@@ -1,0 +1,9 @@
+services:
+  prouter:
+    container_name: prouter
+    image: ghcr.io/prouter/prouter:v0
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./public:/public
