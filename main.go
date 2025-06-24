@@ -34,9 +34,23 @@ func main() {
 	flagSet.String("serve", "", "Path to serve static files from")
 	flagSet.String("address", "", "Address to bind the server to (default all interfaces)")
 	flagSet.String("port", "8080", "Port to bind the server to (default 8080)")
+	flagSet.BoolP("version", "v", false, "Print the version and exit")
 
 	// Parse command line flags
 	flagSet.Parse(os.Args[1:])
+
+	// Check if version flag is set
+	versionFlag, err := flagSet.GetBool("version")
+
+	if err != nil {
+		log.Fatal().Err(err).Msg("Failed to get version flag")
+	}
+
+	// If version flag is set, print version and exit
+	if versionFlag {
+		log.Info().Str("version", Version).Msg("Prouter version")
+		os.Exit(0)
+	}
 
 	// Log the version
 	log.Info().Str("version", Version).Msg("Starting prouter")
