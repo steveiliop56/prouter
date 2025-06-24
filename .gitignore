@@ -1,0 +1,9 @@
+# Public directory for testing
+public
+
+# Binary
+prouter
+main
+
+# Debug
+__debug_*
